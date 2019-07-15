@@ -1,0 +1,9 @@
+scanTopic: /scan
+maxLegsDistance: 0.50 # meters
+minLegsDistance: 0.1 # meters
+correlationEuclidean: false # boolean
+correlationKalman: true # boolean
+historicTime: 30 # seconds
+petraTimer: 0.1 # seconds (float)
+networkModel: "modelo_optimizado.pb"
+outNerworkLayer: "conv2d_19/Sigmoid"

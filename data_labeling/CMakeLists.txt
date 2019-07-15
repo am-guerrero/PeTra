@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(data_labeling)
+
+find_package(catkin REQUIRED COMPONENTS
+   roscpp
+   rospy
+   std_msgs
+   tf
+   message_generation
+)
+find_package(OpenCV REQUIRED)
+
+add_message_files(
+   FILES
+   DataLabelingBW.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
+catkin_package(
+	CATKIN_DEPENDS message_runtime
+)
+
+include_directories(
+  include ${catkin_INCLUDE_DIRS}
+  include ${OpenCV_INCLUDE_DIRS}
+)
+
+add_executable(data_labeling_one_person src/data_labeling_one_person.cpp)
+target_link_libraries(data_labeling_one_person ${catkin_LIBRARIES})
+target_link_libraries(data_labeling_one_person ${OpenCV_LIBS})
+add_dependencies(data_labeling_one_person data_labeling_generate_messages_cpp)
